@@ -1,0 +1,16 @@
+=============================================================================
+PngDataGen : Tool for generating 1x1 pixel transparent PNGs as data uris
+Copyright (c) 2012 Owain Cleaver
+Released under the terms of GNU GPL version 3; see COPYING
+=============================================================================
+
+Windows application for generating 1x1 pixel PNG data uris from CSS3 argb()
+function syntax.
+
+Apparently this is useful for getting around IE8's lack of argb() support.
+
+Requirements:
+ - Windows
+ - .net Framework 4 (Client profile)
+
+kthxbye
