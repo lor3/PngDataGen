@@ -1,0 +1,58 @@
+﻿<Window x:Class="PngDataGen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PNG Data Gen" Height="142" Width="440" Topmost="True" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" ResizeMode="CanMinimize" Background="#F0F0F0" Icon="/PngDataGen;component/icon.ico">
+    
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
+    
+    <Grid Margin="4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <GroupBox Header="Rgba function">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="75" />
+                </Grid.ColumnDefinitions>
+                <TextBox Margin="0,0,5,0"  Height="24" ToolTip="{Binding RelativeSource={RelativeSource self}, Path=(Validation.Errors)[0].ErrorContent}">
+                    <TextBox.Text>
+                        <Binding Path="RgbaFunctionString" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
+                    </TextBox.Text>
+                </TextBox>
+                <Button Content="Generate" Grid.Column="1" IsEnabled="{Binding IsRgbaFunctionStringValid}" Click="GenerateClick" />
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Data Uri" Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="75" />
+                </Grid.ColumnDefinitions>
+                <TextBox Margin="0,0,5,0" Grid.ColumnSpan="2" IsReadOnly="True" Text="{Binding GeneratedCode, Mode=OneWay}" Height="24" Name="generatedCode" />
+            </Grid>
+        </GroupBox>
+        
+        <GroupBox Header="Preview" Grid.Column="1" Grid.RowSpan="2">
+            <Grid>
+                <Grid.Background>
+                    <ImageBrush ImageSource="bg.jpg" />
+                </Grid.Background>
+                <Rectangle Margin="15" Visibility="{Binding IsRgbaFunctionStringValid, Converter={StaticResource BoolToVis}}">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{Binding Colour}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
