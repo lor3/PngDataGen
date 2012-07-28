@@ -12,5 +12,7 @@ Apparently this is useful for getting around IE8's lack of argb() support.
 Requirements:
  - Windows
  - .net Framework 4 (Client profile)
+ 
+Binary download : http://www.lor3.org/crap/PngDataGen.zip
 
 kthxbye
